@@ -1,3 +1,74 @@
+-- ===========================================================================
+-- Base Lua SSeMU - MuEmu 97k Kayito
+-- Créditos Adaptação: NiloMaster | Gabriel GDA 
+-- https://www.youtube.com/cmzonecriandomuonline
+-- Sistema Livre para estudos © CMZone Team 2025
+-- ===========================================================================
+-- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
+-- ===========================================================================
+-- Reader System Information
+-- ===========================================================================
+
+-- Atenção: Este arquivo deve ser usado apenas para requisitar outros arquivos.
+
+-- [Por]
+-- O Reader é um sistema otimizado de leitura que:
+-- - Utiliza recursos apenas quando chamado
+-- - Não impacta o desempenho do servidor em idle
+-- - Gerencia memória de forma eficiente
+--
+-- Casos de uso do sistema:
+-- - Leitura de arquivos de configuração
+-- - Carregamento de dados de eventos
+-- - Processamento de informações de itens
+-- - Gerenciamento de dados de NPCs
+-- - Leitura de qualquer arquivo estruturado do servidor
+--
+-- Características:
+-- - Sistema leve e otimizado
+-- - Seguro para uso contínuo
+-- - Projetado para alta performance
+-- - Gerenciamento eficiente de recursos
+--
+-- [Spn]
+-- El Reader es un sistema de lectura optimizado que:
+-- - Utiliza recursos solo cuando se llama
+-- - No impacta el rendimiento del servidor en reposo
+-- - Gestión eficiente de la memoria
+--
+-- Casos de uso del sistema:
+-- - Lectura de archivos de configuración
+-- - Carga de datos de eventos
+-- - Procesamiento de información de items
+-- - Gestión de datos de NPCs
+-- - Lectura de cualquier archivo estructurado del servidor
+--
+-- Características:
+-- - Sistema ligero y optimizado
+-- - Seguro para uso continuo
+-- - Diseñado para alto rendimiento
+-- - Gestión eficiente de recursos
+--
+-- [Eng]
+-- The Reader is an optimized reading system that:
+-- - Uses resources only when called
+-- - No impact on server performance while idle
+-- - Efficient memory management
+--
+-- System use cases:
+-- - Reading configuration files
+-- - Loading event data
+-- - Processing item information
+-- - NPC data management
+-- - Reading any structured server file
+--
+-- Features:
+-- - Lightweight and optimized system
+-- - Safe for continuous use
+-- - Designed for high performance
+-- - Efficient resource management
+-- ===========================================================================
+
 Reader = {}
 
 function Reader:Load(path)

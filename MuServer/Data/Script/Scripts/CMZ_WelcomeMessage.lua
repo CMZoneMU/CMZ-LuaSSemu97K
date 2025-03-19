@@ -1,30 +1,52 @@
---############################################################################
+-- ===========================================================================
 -- Base Lua SSeMU - MuEmu 97k Kayito
 -- Créditos Adaptação: NiloMaster | Gabriel GDA 
 -- https://www.youtube.com/cmzonecriandomuonline
 -- Sistema Livre para estudos © CMZone Team 2025
--- ---------------------------------------------------------------------------
+-- ===========================================================================
 -- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
---############################################################################
-
--- ===========================================================================
-BridgeFunctionAttach('OnCharacterEntry','WelcomeMessage_OnCharacterEntry')
-BridgeFunctionAttach('OnCharacterClose','WelcomeMessage_OnCharacterClose')
 -- ===========================================================================
 
--- ===========================================================================
+-- [Por]
 -- Sistema de Mensagens Multilíngue e Notificações
--- 
 -- Funcionalidades:
 -- - Exibe mensagem personalizada de boas-vindas aos jogadores
 -- - Informa o status VIP do jogador
 -- - Notifica sobre Staff Online no servidor
--- 
 -- Características:
 -- - Integração com sistema multilíngue (Português, English, Español)
 -- - Mensagens obtidas diretamente das tabelas Message_Por, Message_Eng e Message_Spn
 -- - Compatibilidade com a seleção de idioma feita pelo jogador no Option Menu
 -- - Sistema dinâmico que respeita a preferência de idioma configurada no cliente
+
+-- [Spn]
+-- Sistema de Mensajes Multilingüe y Notificaciones
+-- Funcionalidades:
+-- - Muestra mensaje personalizado de bienvenida a los jugadores
+-- - Informa el estado VIP del jugador
+-- - Notifica sobre Staff Online en el servidor
+-- Características:
+-- - Integración con sistema multilingüe (Portugués, Inglés, Español)
+-- - Mensajes obtenidos directamente de las tablas Message_Por, Message_Eng y Message_Spn
+-- - Compatibilidad con la selección de idioma hecha por el jugador en el Option Menu
+-- - Sistema dinámico que respeta la preferencia de idioma configurada en el cliente
+
+-- [Eng]
+-- Multilingual Message and Notification System
+-- Features:
+-- - Displays customized welcome message to players
+-- - Informs player's VIP status
+-- - Notifies about Staff Online on server
+-- Characteristics:
+-- - Integration with multilingual system (Portuguese, English, Spanish)
+-- - Messages obtained directly from Message_Por, Message_Eng and Message_Spn tables
+-- - Compatibility with language selection made by player in Option Menu
+-- - Dynamic system that respects language preference configured in client
+-- ===========================================================================
+
+-- ===========================================================================
+BridgeFunctionAttach('OnCharacterEntry','WelcomeMessage_OnCharacterEntry')
+BridgeFunctionAttach('OnCharacterClose','WelcomeMessage_OnCharacterClose')
 -- ===========================================================================
 
 function WelcomeMessage_OnCharacterEntry(aIndex)
