@@ -47,7 +47,7 @@ function WelcomeMessage_OnCharacterEntry(aIndex)
 	end
 	
 	-- Verifica se o jogador é Game Master
-	local GameMasterLevel = CommandCheckGameMasterLevel(aIndex,8)
+	local GameMasterLevel = CommandCheckGameMasterLevel(aIndex,8) 
 	
 	if GameMasterLevel == 1 then
 		
