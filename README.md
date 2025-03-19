@@ -18,9 +18,9 @@
 - Alteração feita na Função **LuaCommandCheckGameMasterLevel** no LuaFunction.cpp 
    - Modificação na Verificação de Nível de Game Master<br/> 
    **Código Anterior:**<br/> 
-      - if (aValue > gGameMaster.GetGameMasterLevel(&gObj[aIndex])) // ssemu
+   - if (aValue > gGameMaster.GetGameMasterLevel(&gObj[aIndex])) // ssemu
    **Novo Código:**
-     - if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)
+   - if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)
 
 - atualização na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de IDs dos comandos.<br/> 
