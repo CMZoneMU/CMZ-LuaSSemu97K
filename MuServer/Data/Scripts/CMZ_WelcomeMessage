@@ -14,7 +14,7 @@ BridgeFunctionAttach('OnCharacterClose','WelcomeMessage_OnCharacterClose')
 -- ===========================================================================
 
 -- Script de Mensagem de boas-vindas, tipo de vip e aviso de Staff Online
--- Puxando as mesnagem direto das Linhas Message_Por, MEssage_Eng e Message_Spn
+-- Puxando as mesnagem direto das Linhas Message_Por, Message_Eng e Message_Spn
 -- Seta o Indioma escolhido pelo jogador no sistema 'Option Menu' no Main.
 
 function WelcomeMessage_OnCharacterEntry(aIndex)
