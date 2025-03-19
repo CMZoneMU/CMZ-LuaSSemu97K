@@ -8,6 +8,6 @@
 - Versão LuaLib: 5.4.3
 
 # Atualizações de Scripts
-
+Modificação feita na Função GameMasterLevel LuaFunction.cpp 
 
 
