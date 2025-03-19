@@ -1,6 +1,7 @@
 # Sistema Lua para Kayito MuEmu 0.97k
 
 # - Emulator: MuEmu
+# - Arquivos Lua Cliente: Ryzenn 
 # - Sistema Lua Base: SSemu 99B
 # - Adaptação por: Nilo Master | Gabriel "GDA"
 
