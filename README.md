@@ -21,6 +21,10 @@
      SSemu: if (aValue > gGameMaster.GetGameMasterLevel(&gObj[aIndex])) <br/> 
    **Novo Código:**<br/> 
      MuEMu 97k: if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)<br/> 
+   - Principais Mudanças:<br/> 
+   Substituição do método de comparação direta por uma função dedicada<br/> 
+   Utilização do método CheckGameMasterLevel que oferece uma verificação mais completa<br/> 
+   Melhoria na lógica de validação de níveis de Game Master<br/> 
 
 - atualização na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de IDs dos comandos.<br/> 
