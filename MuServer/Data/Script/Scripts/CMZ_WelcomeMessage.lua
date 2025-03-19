@@ -1,10 +1,9 @@
 --############################################################################
 -- Base Lua SSeMU - MuEmu 97k Kayito
--- Créditos Adaptação: NiloMaster | GDA 
+-- Créditos Adaptação: NiloMaster | Gabriel GDA 
 -- https://www.youtube.com/cmzonecriandomuonline
 -- Sistema Livre para estudos © CMZone Team 2025
 -- ---------------------------------------------------------------------------
--- © 2023 SetecSoft Development
 -- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
 --############################################################################
 
@@ -13,9 +12,20 @@ BridgeFunctionAttach('OnCharacterEntry','WelcomeMessage_OnCharacterEntry')
 BridgeFunctionAttach('OnCharacterClose','WelcomeMessage_OnCharacterClose')
 -- ===========================================================================
 
--- Script de Mensagem de boas-vindas, tipo de vip e aviso de Staff Online
--- Puxando as mesnagem direto das Linhas Message_Por, Message_Eng e Message_Spn
--- Seta o Indioma escolhido pelo jogador no sistema 'Option Menu' no Main.
+-- ===========================================================================
+-- Sistema de Mensagens Multilíngue e Notificações
+-- 
+-- Funcionalidades:
+-- - Exibe mensagem personalizada de boas-vindas aos jogadores
+-- - Informa o status VIP do jogador
+-- - Notifica sobre Staff Online no servidor
+-- 
+-- Características:
+-- - Integração com sistema multilíngue (Português, English, Español)
+-- - Mensagens obtidas diretamente das tabelas Message_Por, Message_Eng e Message_Spn
+-- - Compatibilidade com a seleção de idioma feita pelo jogador no Option Menu
+-- - Sistema dinâmico que respeita a preferência de idioma configurada no cliente
+-- ===========================================================================
 
 function WelcomeMessage_OnCharacterEntry(aIndex)
 	
