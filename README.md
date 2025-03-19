@@ -1,1 +1,1 @@
-# CMZ-LuaSSemu97K
+# Lua Adaptado para Kayito MuEmu 0.97k
