@@ -7,7 +7,7 @@
 - MuServer: MuEmu
 - Versão LuaLib: 5.4.3
 
-# Atualizações de Scripts
+# Atualizações de Scripts e Funções na Source
 
 - Script WelcomeMessage refeito usando a nova função **( LuaMessageGetByPlayer )**
    - Esta função foi implementada no LuaFunction.cpp para gerenciar o suporte a múltiplos idiomas no sistema de mensagens do jogo. <br/>
