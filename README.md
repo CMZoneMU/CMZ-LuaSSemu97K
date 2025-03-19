@@ -25,3 +25,4 @@
     permite que cada comando seja identificado de forma única no sistema.
 
 
+The background color is `#ffffff` for light mode and `#000000` for dark mode.
