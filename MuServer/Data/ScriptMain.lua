@@ -30,5 +30,6 @@
 -- To add new scripts, you must use the syntax require('File Name').
 -- ===========================================================================
 
-require('System\\ScriptCore')
+require('System\\CMZ_ScriptCore')
+require('System\\CMZ_ScriptReader') 
 require('Script\\CMZ_WelcomeMessage')
