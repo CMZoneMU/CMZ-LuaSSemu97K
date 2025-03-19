@@ -2,5 +2,5 @@
 
 # Emulator: MuEmu
 # Sistema Lua Base: SSemu 99B
-- Content:
+# Adaptação por: Nilo Master | Gabriel GDA
 
