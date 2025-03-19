@@ -10,7 +10,7 @@
 -- Registra a função CommandAddPK no gerenciador de comandos
 BridgeFunctionAttach("OnCommandManager", "CommandAddPK")  
 
--- Configuração dos comandos e seus códigos
+-- Configuração dos comandos e seus códigos 
 AddPK = {}
 AddPK.Configs = {}
 AddPK.Configs["Enabled"] = true   -- true = Ativar  | false = Desativar comando

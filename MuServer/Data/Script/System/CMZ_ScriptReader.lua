@@ -6,7 +6,7 @@
 -- ===========================================================================
 -- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
 -- ===========================================================================
--- Reader System Information
+-- Reader System Information 
 -- ===========================================================================
 
 -- Atenção: Este arquivo deve ser usado apenas para requisitar outros arquivos.
