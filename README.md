@@ -27,7 +27,7 @@
    Melhoria na lógica de validação de níveis de Game Master<br/> 
 
 - atualização na função **( CCommandManager::Load )**
-   - Que envolve o gerenciamento de IDs dos comandos.<br/> 
+   - Que envolve o gerenciamento de **IDs** dos comandos.<br/> 
     Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/>
     **Propósito:** Ela Realiza a leitura dos identificadores únicos (IDs) dos comandos<br/> 
     a partir do arquivo de script armazena o valor numérico no membro Index da estrutura info<br/> 
