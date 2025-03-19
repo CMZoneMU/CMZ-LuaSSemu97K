@@ -14,7 +14,7 @@
      Ela atua como uma ponte entre os scripts Lua e o sistema central de mensagens do jogo, permitindo a recuperação <br/>
      dinâmica de mensagens com base no idioma selecionado pelo jogador.
 
-- Alteração feita na Função ** GameMasterLevel ** LuaFunction.cpp 
+- Alteração feita na Função **LuaCommandCheckGameMasterLevel** no LuaFunction.cpp 
 
 - atualização na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de IDs dos comandos. 
