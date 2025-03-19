@@ -4,3 +4,8 @@
 # - Sistema Lua Base: SSemu 99B
 # - Adaptação por: Nilo Master | Gabriel "GDA"
 
+- MuServer: MuEmu
+- Versão LuaLib: 5.4.3
+  -Contem:
+
+
