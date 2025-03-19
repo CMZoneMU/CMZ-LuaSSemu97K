@@ -2,9 +2,9 @@
 
 # - Emulator: MuEmu
 # - Arquivos Lua Cliente: Ryzenn 
-# - Sistema Lua Base: SSemu 99B
-# - Adaptação por: Nilo Master | Gabriel "GDA"
+# - Adaptação GS e Main: Nilo Master | Gabriel "GDA"
 
+- Sistema Lua Base: SSemu 99B
 - MuServer: MuEmu
 - Versão LuaLib: 5.4.3
 
