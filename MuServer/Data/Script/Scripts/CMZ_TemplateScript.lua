@@ -8,25 +8,11 @@
 -- ===========================================================================
 -- TemplateScript System Information
 -- ===========================================================================
-
--- [Por]
 -- Atenção: Este arquivo deve ser usado apenas para requisitar outros arquivos.
 -- Você não deve adicionar código neste arquivo. Se você deseja adicionar scripts personalizados,
 -- crie um novo arquivo baseado no exemplo 'TemplateScript.lua'.
 -- Certifique-se de não remover a linha require('System\ScriptCore'), pois sem ela, nenhum script funcionará.
 -- Para adicionar novos scripts, você deve usar a sintaxe require('Nome do arquivo').
-
--- [Spn]
--- Este es un script de ejemplo que no cumple ninguna función específica. 
--- Su único propósito es servir para ilustrar el uso de las funciones. 
--- Aquí se muestran todos los puentes que están disponibles.
--- Siguiendo el formato: BridgeFunctionAttach('NombrePuente','NombreFuncion').
-
--- [Eng]
--- This is a sample script that does not serve any specific function.
--- Its sole purpose is to serve as an illustration of the use of functions.
--- Here, all available bridges are shown.
--- The format is as follows: BridgeFunctionAttach('BridgeName','FunctionName').
 -- ===========================================================================
 
 BridgeFunctionAttach('OnReadScript','TemplateScript_OnReadScript')

@@ -4,7 +4,7 @@
 -- https://www.youtube.com/cmzonecriandomuonline
 -- Sistema Livre para estudos © CMZone Team 2025
 -- ===========================================================================
--- Script Feito para estudos CMzone
+-- Script Comando Addpk e Limparpk feito para estudos CMzone
 -- ===========================================================================
 
 -- Registra a função CommandAddPK no gerenciador de comandos
@@ -40,9 +40,9 @@ function CommandAddPK(aIndex, code, arg)  -- Função principal que gerencia os 
             return 1
         end
     
-        -- Define Level PK = 4 | Pk Level 1
-        -- Define Level PK = 5 | 1 Estagio Assasino
-        -- Define Level PK = 6 | 2 Estagio Assasino
+        -- Define Level PK: 4 | Pk Level 1
+        -- Define Level PK: 5 | 1 Estagio Assasino
+        -- Define Level PK: 6 | 2 Estagio Assasino
         PKLevelSend(TargetIndex, 6)  -- Define o nível PK do jogador para 6 (2º estágio assassino)
         NoticeSend(aIndex, 1, string.format("Player [%s] voce se tornou PK", TargetName))  -- Envia confirmação
 
@@ -62,9 +62,9 @@ function CommandAddPK(aIndex, code, arg)  -- Função principal que gerencia os 
             return 1
         end
  
-        -- Define Level Hero = 1 | Heroi Level 1
-        -- Define Level Hero = 2 | Heroi Level 2
-        -- Define Level Hero = 3 | Comun
+        -- Define Level Hero: 1 | Heroi Level 1
+        -- Define Level Hero: 2 | Heroi Level 2
+        -- Define Level Hero: 3 | Comun
         PKLevelSend(TargetIndex, 3)  -- Define o nível do jogador para 3 (comum)
         NoticeSend(aIndex, 1, string.format("Player [%s] teve seu PK removido", TargetName))  -- Envia confirmação
 

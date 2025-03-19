@@ -8,33 +8,13 @@
 -- ===========================================================================
 -- ScriptCore System Information
 -- ===========================================================================
-
--- [Por]
 -- Sistema Bridge (Sistema de Ponte)
 -- Este sistema:
--- - Conecta o servidor C++ com scripts Lua
--- - Gerencia eventos do jogo (entrada/saída de jogadores, morte, respawn, etc)
--- - Permite adicionar funções personalizadas para cada evento
--- - Controla interações entre servidor e cliente
--- - Fundamental para criar eventos e funcionalidades customizadas
-
--- [Eng]
--- Bridge System
--- This system:
--- - Connects C++ server with Lua scripts
--- - Manages game events (player login/logout, death, respawn, etc)
--- - Allows adding custom functions for each event
--- - Controls server and client interactions
--- - Essential for creating custom events and features
-
--- [Spn]
--- Sistema Bridge (Sistema Puente)
--- Este sistema:
--- - Conecta el servidor C++ con scripts Lua
--- - Gestiona eventos del juego (entrada/salida de jugadores, muerte, respawn, etc)
--- - Permite agregar funciones personalizadas para cada evento
--- - Controla interacciones entre servidor y cliente
--- - Fundamental para crear eventos y funcionalidades personalizadas
+-- Conecta o servidor C++ com scripts Lua
+-- Gerencia eventos do jogo (entrada/saída de jogadores, morte, respawn, etc)
+-- Permite adicionar funções personalizadas para cada evento
+-- Controla interações entre servidor e cliente
+-- Fundamental para criar eventos e funcionalidades customizadas
 -- ===========================================================================
 
 BridgeFunctionTable = {}
