@@ -1,14 +1,14 @@
-# Sistema Lua para Kayito MuEmu 0.97k
+## Sistema Lua para Kayito MuEmu 0.97k
 
-# - Emulator: MuEmu
-# - Arquivos Lua Cliente: Ryzenn 
-# - Adaptação GS e Main: Nilo Master | Gabriel "GDA"
+## - Emulator: MuEmu
+## - Arquivos Lua Cliente: Ryzenn 
+## - Adaptação GS e Main: Nilo Master | Gabriel "GDA"
 
 - Sistema Lua Base: SSemu 99B
 - MuServer: MuEmu
 - Versão LuaLib: 5.4.3
 
-# Atualizações de Scripts e Funções na Source
+## Atualizações de Scripts e Funções na Source
 
 - Script WelcomeMessage refeito usando a nova função **( LuaMessageGetByPlayer )**
    - Esta função foi implementada no LuaFunction.cpp para gerenciar o suporte a múltiplos idiomas no sistema de mensagens do jogo. <br/>
