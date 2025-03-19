@@ -21,6 +21,7 @@
     Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/>
     **Propósito:** Ela Realiza a leitura dos identificadores únicos (IDs) dos comandos<br/> 
     a partir do arquivo de script armazena o valor numérico no membro Index da estrutura info<br/> 
-    Este processo é fundamental para o sistema de gerenciamento de comandos, pois permite que cada comando seja identificado de forma única no sistema.
+    Este processo é fundamental para o sistema de gerenciamento de comandos, pois<br/> 
+    permite que cada comando seja identificado de forma única no sistema.
 
 
