@@ -25,4 +25,3 @@
     permite que cada comando seja identificado de forma única no sistema.
 
 
-The background color is `#0969DA ola` for light mode and `#000000` for dark mode.
