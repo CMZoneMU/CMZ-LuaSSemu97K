@@ -18,8 +18,7 @@
 
 - atualização na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de IDs dos comandos.<br/> 
-    Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/>
-<br/> 
+    Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/><br/> 
     **Propósito:** Ela Realiza a leitura dos identificadores únicos (IDs) dos comandos<br/> 
     a partir do arquivo de script armazena o valor numérico no membro Index da estrutura info<br/> 
     Este processo é fundamental para o sistema de gerenciamento de comandos, pois permite que cada comando seja identificado de forma única no sistema.
