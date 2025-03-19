@@ -9,6 +9,11 @@
 
 # Atualizações de Scripts
 - Alteração feita na Função GameMasterLevel LuaFunction.cpp 
-- Alteração feita na função (CCommandManager::Load) Foi adicionada uma nova variável -> info.Index = lpReadScript->GetNumber(); 
-essa variavel faz a leitura do ID's dos Comandos.
+- atualização na função ( CCommandManager::Load )
+que envolve o gerenciamento de IDs dos comandos. 
+A linha info.Index = lpReadScript->GetNumber(); 
+foi adicionada com o seguinte propósito:
+- Realiza a leitura dos identificadores únicos (IDs) dos comandos a partir do arquivo de script
+- Armazena o valor numérico no membro Index da estrutura info
+- Este processo é fundamental para o sistema de gerenciamento de comandos, pois permite que cada comando seja identificado de forma única no sistema
 
