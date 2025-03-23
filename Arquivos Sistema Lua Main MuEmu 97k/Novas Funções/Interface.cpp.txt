@@ -1,0 +1,241 @@
+.cpp
+void Interface::LoadImagens(int Type, char* Folder, int ImageID)
+{
+	switch (Type)
+	{
+	case 0:
+	{
+		OpenJPG(Folder, ImageID, 0x2600, 0x2900, 0, 1); // -> JPG
+	}
+	break;
+	case 1:
+	{
+		OpenTGA(Folder, ImageID, 0x2600, 0x2900, 0, 1); // -> TGA
+	}
+	break;
+	}
+}
+
+int Interface::DrawFormat(DWORD Color, int PosX, int PosY, int Width, int Align, LPCSTR Text, ...)
+{
+
+	char Buff[2048];
+
+	int BuffLen = sizeof(Buff) - 1;
+
+	ZeroMemory(Buff, BuffLen);
+
+	va_list args;
+
+	va_start(args, Text);
+
+	int Len = vsprintf_s(Buff, BuffLen, Text, args);
+
+	va_end(args);
+
+	int LineCount = 0;
+
+	char* Line = strtok(Buff, "\n");
+
+	SelectObject(m_hFontDC, g_hFontBold);
+
+	while (Line != NULL)
+	{
+		SetTextColor = Color;
+
+		EnableAlphaTest(true);
+
+		RenderText(PosX, PosY, Line, 0, 0, 0);
+
+		PosY += 10;
+
+		Line = strtok(NULL, "\n");
+	}
+
+	return PosY;
+}
+
+void  Interface::DrawBarForm(float PosX, float PosY, float Width, float Height, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+{
+	EnableAlphaTest(1);
+
+	glColor4f(red, green, blue, alpha);
+
+	pDrawFormat(PosX, PosY, Width, Height, 0.0f, 0);
+
+	EnableAlphaBlend();
+
+	DisableAlphaBlend();
+
+	glColor3f(1.0, 1.0, 1.0);
+}
+
+void Interface::WindowRenderTextLua(int x, int y, int font, int align, int color, const char* text, ...) // OK
+{
+	char buff[256];
+
+	memset(buff, 0, sizeof(buff));
+
+	va_list arg;
+	va_start(arg, text);
+	vsprintf_s(buff, text, arg);
+	va_end(arg);
+
+	SIZE sz;
+
+	// Obtener el tamaño del texto
+	GetTextExtentPoint(m_hFontDC, buff, strlen(buff), &sz);
+
+	int py = (y - (480 * sz.cy / *(DWORD*)MAIN_RESOLUTION_Y >> 1));
+	EnableAlphaTest(true);
+
+	// Selección de la fuente según el valor de 'font'
+	if (font == 1)
+	{
+		// Fuente en negrita
+		SelectObject(m_hFontDC, g_hFontBold);
+	}
+	else if (font == 2)
+	{
+		// Fuente grande
+		SelectObject(m_hFontDC, g_hFontBig);
+	}
+	else
+	{
+		// Fuente normal (valor por defecto)
+		SelectObject(m_hFontDC, g_hFont);
+	}
+
+	// Configuración del color
+	SetBackgroundTextColor = 0;
+
+	if (color == 0)
+	{ // Gris claro
+		SetTextColor = Color4b(220, 220, 220, 255);
+	}
+	else if (color == 1)
+	{ // Dorado
+		SetTextColor = Color4b(223, 191, 103, 255);
+	}
+	else if (color == 2)
+	{ // Rojo intenso
+		SetTextColor = Color4b(230, 5, 5, 255);
+	}
+	else if (color == 3)
+	{ // Verde brillante
+		SetTextColor = Color4b(73, 183, 0, 255);
+	}
+	else if (color == 4)
+	{ // Azul claro
+		SetTextColor = Color4b(100, 150, 255, 255);
+	}
+	else if (color == 5) { // Verde esmeralda
+		SetTextColor = Color4b(0, 225, 139, 255);
+	}
+
+	// Alineación del texto
+	if (align == 1)
+	{ // Centrado
+		x -= (640 * sz.cx / *(DWORD*)MAIN_RESOLUTION_X >> 1);
+		RenderText(x, py, buff, 0, 0, 0);
+	}
+	else if (align == 2)
+	{ // De derecha a izquierda
+		x -= (640 * sz.cx / *(DWORD*)MAIN_RESOLUTION_X >> 1) * 2;
+		RenderText(x, py, buff, 0, 0, 0);
+	}
+	else
+	{
+		RenderText(x, py, buff, 0, 0, 0);
+	}
+
+	// Restaurar la fuente normal después de renderizar
+	SelectObject(m_hFontDC, g_hFont);
+	SetTextColor = Color4b(255, 255, 255, 255);
+
+
+}
+
+bool Interface::DrawButton(float PosX, float PosY, float TextX, float TextY, float SizeButton, int SizeButtonY, char* ButtonText)
+{
+	EnableAlphaTest(true);
+	glColor3f(1.0, 1.0, 1.0);
+	//============Button
+	float SizeButtonW = SizeButton;
+	float SizeButtonH = (SizeButton * 20) / 100;
+	if (SizeButtonY != 0)
+	{
+		SizeButtonW = SizeButtonY;
+	}
+
+	float StartX = PosX;
+	float StartY = PosY;
+	bool mreturn = false;
+
+	//=====================Button 1
+	if (pCheckMouseOver(StartX, StartY, SizeButton, SizeButtonY) == 1 && !gElemental.LockButtonHover)
+	{
+		glColor3f(1.0f, 0.6742f, 0.15f);
+		if (GetTickCount() - gInterface.Data[eWindowElemental].EventTick > 300) //Click
+		{
+			if (GetKeyState(1) & 0x8000)
+			{
+
+				glColor3f(0.72f, 0.438f, 0.0432f);
+
+
+				gInterface.Data[eWindowElemental].EventTick = GetTickCount();
+				mreturn = true;
+			}
+		}
+	}
+	else {
+		glColor3f(1.0f, 1.0f, 1.0f);
+
+	}
+
+	RenderBitmap(1563, StartX, StartY, SizeButton, SizeButtonY, 0.0, 0.0, 170.0f / 256.0f, 28.0f / 32.0f, 1, 1);
+
+	gInterface.DrawFormat(eGold, StartX + TextX, StartY + TextY, SizeButton, 3, ButtonText);
+	//=====================================
+	glColor3f(1.0f, 1.0f, 1.0f); //Xoa mau
+	DeleteObject(ButtonText);
+	DisableAlphaBlend();
+	EnableAlphaTest(0);
+	return mreturn;
+}
+
+void Interface::DrawWindowClassic(float PosX, float PosY, float WindowW, float WindowE, short ObjectID)
+{
+	EnableAlphaTest(true);
+
+	SetBackgroundTextColor = Color4b(255, 255, 255, 0);
+
+	// Imagem de Cima
+	float WT_MainHeight = 125.0; // Anterior 256.0
+
+	//Imagem de Baixo
+	float WB_MainHeight = 175.0; // Anterior 256.0
+
+	// Tamanho do Quadro de IMG
+	float Windows_Size = 234.0; // 234.0f
+
+	// Top part of the window
+	RenderBitmap(1010, PosX, PosY, WindowW, WindowE, 0, 0, 190.0 / Windows_Size, WT_MainHeight / Windows_Size, 1, 1);
+	// Bottom part of the window - adjusted positioning
+	RenderBitmap(1011, PosX, PosY + WindowE, WindowW, WindowE, 0, 0, 190.0 / Windows_Size, WB_MainHeight / Windows_Size, 1, 1);
+
+}
+
+.h
+void LoadImagens(int Type, char* Folder, int ImageID);
+
+int  DrawFormat(DWORD Color, int PosX, int PosY, int Width, int Align, LPCSTR Text, ...);
+
+void DrawBarForm(float PosX, float PosY, float Width, float Height, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+
+void WindowRenderTextLua(int x, int y, int font, int align, int color, const char* text, ...);
+
+bool DrawButton(float PosX, float PosY, float TextX, float TextY, float SizeButton, int SizeButtonY, char* ButtonText);
+
+void DrawWindowClassic(float PosX, float PosY, float WindowW, float WindowE, short ObjectID);	
