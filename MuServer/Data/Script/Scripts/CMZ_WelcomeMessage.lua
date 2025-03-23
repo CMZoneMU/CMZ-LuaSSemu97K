@@ -31,24 +31,24 @@ function WelcomeMessage_OnCharacterEntry(aIndex)
 	
 	local UserAccountExpireDate = GetObjectAccountExpireDate(aIndex)
 
-  NoticeSend(aIndex, 0, string.format(MessageGetByPlayer(154, aIndex), UserName))
+  NoticeSend(aIndex, 0, string.format(MessageTextMessage(154, aIndex), UserName))
 
 	-- Exibe a expiração da conta conforme o nível
 	if UserAccountLevel == 0 then 
 		
-		  NoticeSend(aIndex, 1, string.format(MessageGetByPlayer(155, aIndex), UserAccountExpireDate))
+		  NoticeSend(aIndex, 1, string.format(MessageTextMessage(155, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 1 then
 		
-		 NoticeSend(aIndex, 1, string.format(MessageGetByPlayer(156, aIndex), UserAccountExpireDate))
+		 NoticeSend(aIndex, 1, string.format(MessageTextMessage(156, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 2 then
 		
-		NoticeSend(aIndex, 1, string.format(MessageGetByPlayer(157, aIndex), UserAccountExpireDate))
+		NoticeSend(aIndex, 1, string.format(MessageTextMessage(157, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 3 then
 		
-		 NoticeSend(aIndex, 1, string.format(MessageGetByPlayer(158, aIndex), UserAccountExpireDate))
+		 NoticeSend(aIndex, 1, string.format(MessageTextMessage(158, aIndex), UserAccountExpireDate))
 		
 	end
 	
@@ -57,7 +57,7 @@ function WelcomeMessage_OnCharacterEntry(aIndex)
 	
 	if GameMasterLevel == 1 then
 		
-		 NoticeSendToAll(0, string.format(MessageGetByPlayer(159, aIndex), UserName))
+		 NoticeSendToAll(0, string.format(MessageTextMessage(159, aIndex), UserName))
 		
 	end
 	
@@ -78,7 +78,7 @@ function WelcomeMessage_OnCharacterClose(aIndex)
 	
 	if GameMasterLevel == 1 then
 		
-		 NoticeSendToAll(0, string.format(MessageGetByPlayer(160, aIndex), UserName))
+		 NoticeSendToAll(0, string.format(MessageTextMessage(160, aIndex), UserName))
 		
 	end
 end
