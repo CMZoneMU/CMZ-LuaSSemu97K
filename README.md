@@ -10,11 +10,6 @@
 
 ## Atualizações de Scripts e Funções na Source
 
-- Script WelcomeMessage refeito usando a nova função **( LuaMessageGetByPlayer )**
-   - Esta função foi implementada no LuaFunction.cpp para gerenciar o suporte a múltiplos idiomas no sistema de mensagens do jogo. <br/>
-     Ela atua como uma ponte entre os scripts Lua e o sistema central de mensagens do jogo, permitindo a recuperação <br/>
-     dinâmica de mensagens com base no idioma selecionado pelo jogador.
-
 - Alteração feita na Função **LuaCommandCheckGameMasterLevel** no LuaFunction.cpp 
    - Modificação na Verificação de Nível de Game Master<br/> 
    **Código Anterior:**<br/> 
