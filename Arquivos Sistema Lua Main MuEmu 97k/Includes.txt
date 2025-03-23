@@ -1,0 +1,11 @@
+// Inclui o cabeçalho principal do Lua, que contém todas as definições necessárias para usar a API Lua
+#include "..\\..\\Util\\LuaScriptMain\\Include\\lua.hpp"
+
+// Vincula a biblioteca estática do Lua 5.3.5 ao projeto
+#pragma comment(lib,"..\\..\\Util\\LuaScriptMain\\Lib\\lua5.3.5-static.lib")
+
+// Vincula as bibliotecas do GLEW (OpenGL Extension Wrangler)
+// GLEW é usado para gerenciar extensões OpenGL
+
+#pragma comment(lib,"..\\..\\Util\\Dependencies\\GLEW\\lib\\glew32s.lib") // Versão estática
+#pragma comment(lib,"..\\..\\Util\\Dependencies\\GLEW\\lib\\glew32.lib")  // Versão dinâmica
