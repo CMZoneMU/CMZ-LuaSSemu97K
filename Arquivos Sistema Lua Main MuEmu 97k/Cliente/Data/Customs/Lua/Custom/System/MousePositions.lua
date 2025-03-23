@@ -1,23 +1,3 @@
---############################################################################
--- RGProject MU Online Emulator
--- ---------------------------------------------------------------------------
--- © 2024 RGProject Development
--- Este arquivo faz parte dos arquivos do Servidor RGP MuOnline.
---############################################################################
-
--- ===========================================================================
--- AVISO: Modificar este arquivo pode afetar a funcionalidade do jogo.
--- Qualquer modificação incorreta pode resultar em erros, falhas ou comportamentos inesperados no jogo.
-
--- AVISO: Modificar este arquivo pode afetar a funcionalidade do jogo.
--- Qualquer modificação incorreta pode resultar em erros, falhas ou comportamentos inesperados no jogo.
--- ===========================================================================
------------------------------------------
-	-- Script:		Janela de Código de Presente
-	-- Criador:		Matias Cappussi
-	-- WhatsApp:	+54 9 3624 - 932563
------------------------------------------
--- Variável para armazenar o texto inserido pelo jogador
 
 
 MousePos = {}

@@ -1,17 +1,3 @@
---############################################################################
--- RGProject MU Online Emulator
--- ---------------------------------------------------------------------------
--- © 2024 RGProject Development
--- This file is part of the RGP MuOnline Server files.
---############################################################################
-
--- ===========================================================================
--- ADVERTENCIA: Modificar este archivo puede afectar la funcionalidad del juego. 
--- Cualquier modificación incorrecta puede resultar en errores, fallos o comportamientos inesperados en el juego.
-
--- WARNING: Modifying this file may affect the functionality of the game.
--- Any incorrect modification can result in errors, crashes, or unexpected behavior in the game.
--- ===========================================================================
 
 ITEM_BASE          = 400
 

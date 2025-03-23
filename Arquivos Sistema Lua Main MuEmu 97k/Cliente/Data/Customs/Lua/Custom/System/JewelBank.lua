@@ -1,13 +1,4 @@
---############################################################################
---############################################################################
 
--- ===========================================================================
--- AVISO: Modificar este arquivo pode afetar a funcionalidade do jogo. 
--- Qualquer modifica��o incorreta pode resultar em erros, falhas ou comportamentos inesperados no jogo.
-
--- WARNING: Modifying this file may affect the functionality of the game.
--- Any incorrect modification can result in errors, crashes, or unexpected behavior in the game.
--- ===========================================================================
 
 -- Inicializa a tabela JewelBank
 JewelBank = {}
