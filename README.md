@@ -10,11 +10,6 @@
 
 ## Atualizações de Scripts e Funções na Source
 
-- Script WelcomeMessage refeito usando a nova função **( LuaMessageGetByPlayer )**
-   - Esta função foi implementada no LuaFunction.cpp para gerenciar o suporte a múltiplos idiomas no sistema de mensagens do jogo. <br/>
-     Ela atua como uma ponte entre os scripts Lua e o sistema central de mensagens do jogo, permitindo a recuperação <br/>
-     dinâmica de mensagens com base no idioma selecionado pelo jogador.
-
 - Alteração feita na Função **LuaCommandCheckGameMasterLevel** no LuaFunction.cpp 
    - Modificação na Verificação de Nível de Game Master<br/> 
    **Código Anterior:**<br/> 
@@ -26,7 +21,7 @@
    Utilização do método CheckGameMasterLevel que oferece uma verificação mais completa<br/> 
    Melhoria na lógica de validação de níveis de Game Master<br/> 
 
-- atualização na função **( CCommandManager::Load )**
+- Alteração na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de **IDs** dos comandos.<br/> 
     Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/>
     **Propósito:** Ela Realiza a leitura dos identificadores únicos (IDs) dos comandos<br/> 
