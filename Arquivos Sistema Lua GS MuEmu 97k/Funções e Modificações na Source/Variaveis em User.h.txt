@@ -1,0 +1,23 @@
+// Função adaptada na source Kayito
+
+// LuaScript
+
+BYTE DeathMap;
+short DeathX;
+short DeathY;
+char Password[11];
+DWORD MuCoins;
+BYTE Permission[50];
+DWORD CommandCheckTime[200];
+
+// Lua
+enum eAttributeType
+{
+	ATTRIBUTE_NONE = 0,
+	ATTRIBUTE_SPECIAL = 1,
+	ATTRIBUTE_MONSTER = 2,
+	ATTRIBUTE_SUMMON = 3,
+	ATTRIBUTE_SUMMONED = 4,
+	ATTRIBUTE_INVASION = 5,
+	ATTRIBUTE_KALIMA = 6,
+};

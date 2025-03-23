@@ -1,0 +1,34 @@
+// ServerInfo.cpp
+
+.cpp
+-> void ReadInit()
+{
+   this->ReadScriptInfo();
+}
+
+-> void ReloadAll()
+{
+   this->ReadScriptInfo();
+}
+
+
+->  Função ReadScriptInfo
+
+void CServerInfo::ReadScriptInfo() // OK
+{
+	gScriptLoader.OnShutScript();
+
+	gScriptLoader.Load(gPath.GetFullPath("Script\\ScriptMain.lua"));
+
+	gScriptLoader.OnReadScript();
+
+	LogAdd(LOG_BLUE, "[ServerInfo] ScriptLua loaded successfully");
+}
+
+.h
+-> class CServerInfo
+{
+   void ReadScriptInfo(); 
+}
+
+

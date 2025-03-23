@@ -1,0 +1,65 @@
+// Função adaptada na source Kayito
+
+.cpp
+void GCNewMessageSend(int aIndex, int type, int color, char* message, ...) // OK
+{
+	char buff[128];
+
+	va_list arg;
+
+	va_start(arg, message);
+
+	vsprintf_s(buff, message, arg);
+
+	va_end(arg);
+
+	PMSG_NEW_MESSAGE_SEND pMsg;
+
+	pMsg.header.set(0xF3, 0xE4, sizeof(pMsg));
+
+	pMsg.type = type;
+
+	pMsg.color = color;
+
+	memcpy(pMsg.message, buff, sizeof(pMsg.message));
+
+	DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
+
+}
+
+void GCNewMessageSendToAll(int type, int color, char* message, ...) // OK
+{
+	char buff[128];
+
+	va_list arg;
+
+	va_start(arg, message);
+
+	vsprintf_s(buff, message, arg);
+
+	va_end(arg);
+
+	for (int n = OBJECT_START_USER; n < MAX_OBJECT; n++)
+	{
+		if (gObjIsConnectedGP(n) != 0)
+		{
+			GCNewMessageSend(n, type, color, "%s", buff);
+		}
+	}
+}
+
+.h
+// Protocolo GameServer -> Main
+
+struct PMSG_NEW_MESSAGE_SEND
+{
+	PSBMSG_HEAD header; // C1:F3:[E4:E5]
+	BYTE type;
+	BYTE color;
+	char message[128];
+};
+
+
+void GCNewMessageSend(int aIndex, int type, int color, char* message, ...);
+
+void GCNewMessageSendToAll(int type, int color, char* message, ...);

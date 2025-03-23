@@ -1,0 +1,11 @@
+#include <sql.h> // QueryManager
+#include <sqlext.h> // QueryManager
+
+
+// Inclui o cabeçalho principal da biblioteca Lua para permitir a integração com scripts Lua
+#include "..\\..\\Util\\LuaScript\\Lib\\Lua\\Lua\\lua.hpp" 
+
+// Vincula o programa à biblioteca lua5.4.3.lib, substituindo a versão anterior (Lua 5.2)
+#pragma comment(lib,"..\\..\\Util\\LuaScript\\Lib\\Lua\\lua5.4.3.lib") // Alteração de Lua52 para versão 5.4.3
+
+

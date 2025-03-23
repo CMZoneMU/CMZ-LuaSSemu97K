@@ -1,0 +1,75 @@
+gScriptLoader.OnCharacterEntry(lpObj->Index); // Adicionar em DS Protocol.cpp na função void DGCharacterInfoRecv 
+
+gScriptLoader.OnUserRespawn(lpObj->Index, lpObj->KillerType); // Adiconar em ObjectManager na função  void CObjectManager::ObjectSetStateProc
+
+gScriptLoader.OnCharacterClose(aIndex); // Adicionar em ObjectManager na função bool CObjectManager::CharacterGameClose
+
+//==============================================================================================================
+// Adiconar os If abaixo na Fonte.cpp ObjectManager dentro da função void CObjectManager::CharacterLifeCheck
+//==============================================================================================================
+
+Em: Type == OBJECT_MONSTER
+
+if (lpTarget->Life <= 0 && lpTarget->Live != 0)
+{
+  gScriptLoader.OnMonsterDie(lpTarget->Index, SummonIndex); // 01
+}
+
+Em: Type == OBJECT_USER)
+
+if (lpTarget->Type == OBJECT_USER)
+{
+ gScriptLoader.OnMonsterDie(lpTarget->Index, SummonIndex); // 02
+}
+
+//==============================================================================================================
+// Adiconar na fonte User.cpp nas seguintes funções
+//==============================================================================================================
+
+Função gObjTelepor e gObjMoveGate
+gScriptLoader.OnUserMove(aIndex, map);
+
+Função gObjPlayerKiller
+if (gScriptLoader.OnCheckUserKiller(lpObj->Index, lpTarget->Index) == 0)
+{
+	return;
+}
+
+
+//==============================================================================================================
+// Adiconar na fonte NpcTalk.cpp na função CNpcTalk::CGNpcTalkRecv
+//==============================================================================================================
+
+if (gScriptLoader.OnNpcTalk(bIndex, aIndex) != 0)
+{
+  return;
+}
+
+//==============================================================================================================
+// Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemGetRecv:
+//==============================================================================================================
+
+if (gScriptLoader.OnUserItemPick(aIndex, index) == 0)
+{
+  DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
+  return;
+}
+
+
+//==============================================================================================================
+// Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemDropRecv
+//==============================================================================================================
+if (gScriptLoader.OnUserItemDrop(aIndex, lpMsg->slot, lpMsg->x, lpMsg->y) == 0)
+{
+ DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
+ return;
+}
+
+//==============================================================================================================
+// Adiconar na fonte ItemManager na função CItemManager::CGItemMoveRecv
+//==============================================================================================================
+if (gScriptLoader.OnUserItemMove(aIndex, lpMsg->SourceFlag, lpMsg->SourceSlot, lpMsg->TargetFlag, lpMsg->TargetSlot) == 0)
+{
+  DataSend(aIndex, (BYTE*)&pMsg, pMsg.header.size);
+  return;
+}

@@ -1,0 +1,29 @@
+-> Adiconar na função Main dentro do if WSAStartup:
+
+main()
+{
+
+ if (WSAStartup(MAKEWORD(2, 2), &wsa) == 0)
+ {
+   gQueueTimer.CreateTimer(QUEUE_TIMER_LUA, 1000, &QueueTimerCallback); 
+
+   gQueueTimer.CreateTimer(QUEUE_TIMER_LUA_ASYNC, 100, &QueueTimerCallback); 
+ }
+
+}
+
+
+-> Adiconar na função CALLBACK WndProc abaixo: ID_RELOAD_RELOADUTIL
+
+case ID_RELOAD_RELOADSCRIPT:
+{
+  gServerInfo.ReadScriptInfo();
+  break;
+
+}
+
+
+#define ID_RELOAD_RELOADSCRIPT          32732 
+
+MENUITEM "Reload Script",               ID_RELOAD_RELOADSCRIPT
+

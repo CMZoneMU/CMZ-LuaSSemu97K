@@ -1,0 +1,19 @@
+// Função adaptada na source Kayito
+
+.cpp
+char* CItemManager::GetItemName(int index) // OK
+{
+	std::map<int, ITEM_INFO>::iterator it = this->m_ItemInfo.find(index);
+
+	if (it == this->m_ItemInfo.end())
+	{
+		return "No Name";
+	}
+	else
+	{
+		return it->second.Name;
+	}
+}
+
+.h
+char* GetItemName(int index);

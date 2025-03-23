@@ -1,0 +1,38 @@
+// Função adaptada na source Kayito
+
+.cpp
+void GDGlobalMessageSend(BYTE type, BYTE color, char* message, ...) // OK
+{
+	char buff[256] = { 0 };
+
+	va_list arg;
+	va_start(arg, message);
+
+	vsprintf_s(buff, message, arg);
+
+	va_end(arg);
+
+	SDHP_GLOBAL_MESSAGE_SEND pMsg;
+
+	pMsg.header.set(0x2B, sizeof(pMsg));
+
+	pMsg.type = type;
+
+	pMsg.color = color;
+
+	memcpy(pMsg.message, buff, sizeof(pMsg.message));
+
+	gDataServerConnection.DataSend((BYTE*)&pMsg, sizeof(pMsg));
+}
+
+.h
+
+struct SDHP_GLOBAL_MESSAGE_SEND
+{
+	PBMSG_HEAD header; // C1:2B
+	BYTE type;
+	BYTE color;
+	char message[128];
+};
+
+void GDGlobalMessageSend(BYTE type, BYTE color, char* message, ...);

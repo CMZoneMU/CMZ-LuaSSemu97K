@@ -1,0 +1,42 @@
+// Função adaptada na source Kayito
+
+.cpp
+int MonsterCount(int index, int map, int x, int y, int tx, int ty) // OK
+{
+	int count = 0;
+
+	for (int n = OBJECT_START_MONSTER; n < MAX_OBJECT_MONSTER; n++)
+	{
+		if (gObjIsConnected(n) == 0)
+		{
+			continue;
+		}
+
+		if (gObj[n].Live == 0 || gObj[n].State != OBJECT_PLAYING)
+		{
+			continue;
+		}
+
+		if (index != -1 && gObj[n].Class != index)
+		{
+			continue;
+		}
+
+		if (map != -1 && gObj[n].Map != map)
+		{
+			continue;
+		}
+
+		if (gObj[n].X < x || gObj[n].X > tx || gObj[n].Y < y || gObj[n].Y > ty)
+		{
+			continue;
+		}
+
+		count++;
+	}
+
+	return count;
+}
+
+.h
+int MonsterCount(int index, int map, int x, int y, int tx, int ty);

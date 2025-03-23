@@ -1,0 +1,19 @@
+-> Adicionar novas cases na Função CALLBACK QueueTimerCallback:
+
+void CALLBACK QueueTimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired)
+{
+
+case QUEUE_TIMER_LUA:
+{
+    gScriptLoader.OnTimerThread();
+    break;
+}
+
+
+  case QUEUE_TIMER_LUA_ASYNC:
+  {
+    gScriptLoader.OnSQLAsyncResult();
+    break;
+  }
+
+}
