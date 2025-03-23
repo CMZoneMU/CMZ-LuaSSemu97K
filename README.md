@@ -21,7 +21,7 @@
    Utilização do método CheckGameMasterLevel que oferece uma verificação mais completa<br/> 
    Melhoria na lógica de validação de níveis de Game Master<br/> 
 
-- atualização na função **( CCommandManager::Load )**
+- Alteração na função **( CCommandManager::Load )**
    - Que envolve o gerenciamento de **IDs** dos comandos.<br/> 
     Foi implementada a linha **info.Index = lpReadScript->GetNumber();**<br/>
     **Propósito:** Ela Realiza a leitura dos identificadores únicos (IDs) dos comandos<br/> 
