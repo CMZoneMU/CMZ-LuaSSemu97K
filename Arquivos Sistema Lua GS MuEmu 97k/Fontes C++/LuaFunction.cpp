@@ -71,7 +71,6 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "GetObjectDefaultDexterity", LuaGetObjectDefaultDexterity);
 	lua_register(L, "GetObjectDefaultVitality", LuaGetObjectDefaultVitality);
 	lua_register(L, "GetObjectDefaultEnergy", LuaGetObjectDefaultEnergy);
-
 	lua_register(L, "GetObjectLive", LuaGetObjectLive);
 	lua_register(L, "GetObjectLife", LuaGetObjectLife);
 	lua_register(L, "GetObjectMaxLife", LuaGetObjectMaxLife);
@@ -206,7 +205,6 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "SQLAsyncGetString", LuaSQLAsyncGetString);
 	lua_register(L, "GetGameServerProtocol", LuaGetGameServerProtocol);
 
-	lua_register(L, "MessageGetByPlayer", LuaMessageGetByPlayer);
 }
 
 int LuaRequire(lua_State* L)
@@ -1052,8 +1050,6 @@ int LuaGetObjectDefaultEnergy(lua_State* L) // OK
 	lua_pushinteger(L, gDefaultClassInfo.GetCharacterDefaultStat(gObj[aIndex].Class, 3));
 	return 1;
 }
-
-
 
 int LuaGetObjectLive(lua_State* L) // OK
 {
@@ -2995,13 +2991,31 @@ int LuaMessageGet(lua_State* L) // OK
 		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 1);
 	}
 
-	int aValue = static_cast<int>(lua_tointeger(L, 1));
+	int index = luaL_checkinteger(L, 1);
+	int aIndex = luaL_checkinteger(L, 2);
 
-	char value[256] = { 0 };
+	if (aIndex < 0 || aIndex >= MAX_OBJECT)
+	{
+		lua_pushstring(L, "Invalid player index!");
+		return 1;
+	}
 
-	strcpy_s(value, gMessage.GetTextMessage(aValue, 0));
+	if (!gObjIsConnected(aIndex))
+	{
+		lua_pushstring(L, "Player not connected!");
+		return 1;
+	}
 
-	lua_pushstring(L, value);
+	int lang = gObj[aIndex].Lang;
+
+
+	if (lang < LANGUAGE_ENGLISH || lang >= MAX_LANGUAGE)
+	{
+		lang = LANGUAGE_ENGLISH;
+	}
+
+
+	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
 	return 1;
 }
 
@@ -4158,43 +4172,6 @@ int LuaSQLAsyncGetString(lua_State* L) // OK
 // Customs Modificadas
 // =============================================================================================================
 
-int LuaMessageGetByPlayer(lua_State* L) // OK
-{
-
-	if (lua_gettop(L) != 2)
-	{
-		lua_pushstring(L, "Invalid arguments! Expected (messageIndex, aIndex)");
-		return 1;
-	}
-
-	int index = luaL_checkinteger(L, 1); 
-	int aIndex = luaL_checkinteger(L, 2); 
-
-	if (aIndex < 0 || aIndex >= MAX_OBJECT)
-	{
-		lua_pushstring(L, "Invalid player index!");
-		return 1;
-	}
-
-	if (!gObjIsConnected(aIndex))
-	{
-		lua_pushstring(L, "Player not connected!");
-		return 1;
-	}
-
-	int lang = gObj[aIndex].Lang; 
-
-
-	if (lang < LANGUAGE_ENGLISH || lang >= MAX_LANGUAGE)
-	{
-		lang = LANGUAGE_ENGLISH;
-	}
-
-
-	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
-	return 1;
-}
-
 int LuaCommandCheckGameMasterLevel(lua_State* L) // OK
 {
 	if (lua_gettop(L) != 2)
@@ -4216,7 +4193,6 @@ int LuaCommandCheckGameMasterLevel(lua_State* L) // OK
 		return 0;
 	}
 
-	// Correção para ler a função CheckGameMasterLevel do Kayito
 	if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)
 	{
 		lua_pushinteger(L, 0);
