@@ -1,0 +1,58 @@
+.cpp
+void SetCursorFocus(int state)
+{
+	if (state != 1)
+	{
+
+		//Primeira Verificação (Button OK)
+		SetDword(0x00517CE6 + 1, 40); //40 //5B8C70
+		SetDword(0x00517CEB + 1, 323); //323 //5B8C75
+		SetDword(0x00517CDA + 1, 70); //70 //5B8C64
+		SetDword(0x00517CDF + 1, 234); //234 //5B8C69
+
+		//Segunda Verificação (Button Cancel)
+		SetDword(0x005199AB + 1, 40); //40 //5BA8B7
+		SetDword(0x005199B0 + 1, 373); //373 //5BA8BC
+		SetDword(0x0051999F + 1, 70); //70 //5BA8AB
+		SetDword(0x005199A4 + 1, 334); //334 //5BA8B0
+
+		SetCompleteHook(0xE8, 0x0051E200, 0x0051AF50);  //DISABLE PSETCURSORFOCUS INTERFACE //61EA20 5BF2A0
+		SetCompleteHook(0xE8, 0x00521D51, 0x0051AF50);  //DISABLE PSETCURSORFOCUS INTERFACE //5C2EB2
+		SetCompleteHook(0xE8, 0x00521D2C, 0x0051AF50);  //DISABLE PSETCURSORFOCUS INTERFACE //5C2E8E
+		SetCompleteHook(0xE8, 0x00525CC1, 0x0051AF50);  //DISABLE PSETCURSORFOCUS INTERFACE //5C7B9A
+
+		ErrorMessage = 0;
+	}
+	else
+	{
+		ErrorMessage = 125;
+
+		MemorySet(0x0051E200, 0x90, 0x5);  //DISABLE PSETCURSORFOCUS INTERFACE
+		MemorySet(0x00521D51, 0x90, 0x5);  //DISABLE PSETCURSORFOCUS INTERFACE
+		MemorySet(0x00521D2C, 0x90, 0x5);  //DISABLE PSETCURSORFOCUS INTERFACE
+		MemorySet(0x00525CC1, 0x90, 0x5);  //INTERFACE ENTERA
+
+		//Primeira Verificação (Button OK)
+		SetDword(0x00517CE6 + 1, 0); //40 //5B8C70
+		SetDword(0x00517CEB + 1, 0); //323 //5B8C75
+		SetDword(0x00517CDA + 1, 0); //70 //5B8C64
+		SetDword(0x00517CDF + 1, 0); //234 //5B8C69
+
+		//Segunda Verificação (Button Cancel)
+		SetDword(0x005199AB + 1, 0); //40 //5BA8B7
+		SetDword(0x005199B0 + 1, 0); //373 //5BA8BC
+		SetDword(0x0051999F + 1, 0); //70 //5BA8AB
+		SetDword(0x005199A4 + 1, 0); //334 //5BA8B0
+	}
+}
+
+char* GetItemName(int ItemType)
+{
+	return (char*)(*(DWORD*)0x7D78068 + 64 * ItemType);
+}
+
+
+.h
+void SetCursorFocus(int state);
+
+char* GetItemName(int ItemType);
