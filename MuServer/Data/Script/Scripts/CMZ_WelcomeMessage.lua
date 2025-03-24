@@ -1,22 +1,12 @@
--- ===========================================================================
--- Base Lua SSeMU - MuEmu 97k Kayito
--- Créditos Adaptação: NiloMaster | Gabriel GDA 
--- https://www.youtube.com/cmzonecriandomuonline
--- Sistema Livre para estudos © CMZone Team 2025
--- ===========================================================================
--- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
--- ===========================================================================
--- Sistema de Mensagens Multilíngue e Notificações
--- Funcionalidades:
--- Exibe mensagem personalizada de boas-vindas aos jogadores
--- Informa o status VIP do jogador
--- Notifica sobre Staff Online no servidor
--- Características:
--- Integração com sistema multilíngue (Português, English, Español)
--- Mensagens obtidas diretamente das tabelas Message_Por, Message_Eng e Message_Spn
--- Compatibilidade com a seleção de idioma feita pelo jogador no Option Menu
--- Sistema dinâmico que respeita a preferência de idioma configurada no cliente
--- ===========================================================================
+--############################################################################
+-- SSeMU MU Online Emulator
+-- https://www.ssemu.com.ar
+-- https://www.facebook.com/ssemuemulator
+-- https://www.youtube.com/@ssemu
+-- ---------------------------------------------------------------------------
+-- © 2023 SetecSoft Development
+-- This file is part of the SSeMU MuOnline Server files.
+--############################################################################
 
 -- ===========================================================================
 BridgeFunctionAttach('OnCharacterEntry','WelcomeMessage_OnCharacterEntry')
@@ -31,33 +21,34 @@ function WelcomeMessage_OnCharacterEntry(aIndex)
 	
 	local UserAccountExpireDate = GetObjectAccountExpireDate(aIndex)
 
-  NoticeSend(aIndex, 0, string.format(MessageTextMessage(154, aIndex), UserName))
+   -- Mensagem de boas-vindas no idioma correto do jogador
+    NoticeSend(aIndex, 0, string.format(MessageGet(154, aIndex), UserName))
 
 	-- Exibe a expiração da conta conforme o nível
 	if UserAccountLevel == 0 then 
 		
-		  NoticeSend(aIndex, 1, string.format(MessageTextMessage(155, aIndex), UserAccountExpireDate))
+		  NoticeSend(aIndex, 1, string.format(MessageGet(155, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 1 then
 		
-		 NoticeSend(aIndex, 1, string.format(MessageTextMessage(156, aIndex), UserAccountExpireDate))
+		 NoticeSend(aIndex, 1, string.format(MessageGet(156, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 2 then
 		
-		NoticeSend(aIndex, 1, string.format(MessageTextMessage(157, aIndex), UserAccountExpireDate))
+		NoticeSend(aIndex, 1, string.format(MessageGet(157, aIndex), UserAccountExpireDate))
 		
 	elseif UserAccountLevel == 3 then
 		
-		 NoticeSend(aIndex, 1, string.format(MessageTextMessage(158, aIndex), UserAccountExpireDate))
+		 NoticeSend(aIndex, 1, string.format(MessageGet(158, aIndex), UserAccountExpireDate))
 		
 	end
 	
 	-- Verifica se o jogador é Game Master
-	local GameMasterLevel = CommandCheckGameMasterLevel(aIndex,8) 
+	local GameMasterLevel = CommandCheckGameMasterLevel(aIndex,2)
 	
 	if GameMasterLevel == 1 then
 		
-		 NoticeSendToAll(0, string.format(MessageTextMessage(159, aIndex), UserName))
+		 NoticeSendToAll(0, string.format(MessageGet(159, aIndex), UserName))
 		
 	end
 	
@@ -78,9 +69,7 @@ function WelcomeMessage_OnCharacterClose(aIndex)
 	
 	if GameMasterLevel == 1 then
 		
-		 NoticeSendToAll(0, string.format(MessageTextMessage(160, aIndex), UserName))
+		 NoticeSendToAll(0, string.format(MessageGet(160, aIndex), UserName))
 		
 	end
 end
-
-LogColor(2, "[CMZ LUA] - [WelcomeMessage]: Carregado com sucesso!");
