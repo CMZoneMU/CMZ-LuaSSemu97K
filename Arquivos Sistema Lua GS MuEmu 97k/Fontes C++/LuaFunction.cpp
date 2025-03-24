@@ -38,9 +38,7 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "GetGameServerCode", LuaGetGameServerCode);
 	lua_register(L, "GetGameServerCurUser", LuaGetGameServerCurUser);
 	lua_register(L, "GetGameServerMaxUser", LuaGetGameServerMaxUser);
-
-	lua_register(L, "GetGameServerVersion", LuaGetGameServerVersion); // ok
-
+	lua_register(L, "GetLicenseId", LuaGetLicenseId);
 	lua_register(L, "GetLicenseCustomerName", LuaGetLicenseCustomerName);
 	lua_register(L, "GetObjectConnected", LuaGetObjectConnected);
 	lua_register(L, "GetObjectIpAddress", LuaGetObjectIpAddress);
@@ -71,6 +69,7 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "GetObjectDefaultDexterity", LuaGetObjectDefaultDexterity);
 	lua_register(L, "GetObjectDefaultVitality", LuaGetObjectDefaultVitality);
 	lua_register(L, "GetObjectDefaultEnergy", LuaGetObjectDefaultEnergy);
+	lua_register(L, "GetObjectDefaultLeadership", LuaGetObjectDefaultLeadership);
 	lua_register(L, "GetObjectLive", LuaGetObjectLive);
 	lua_register(L, "GetObjectLife", LuaGetObjectLife);
 	lua_register(L, "GetObjectMaxLife", LuaGetObjectMaxLife);
@@ -118,6 +117,7 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "SetObjectMapY", LuaSetObjectMapY);
 	lua_register(L, "CharacterGetRespawnLocation", LuaCharacterGetRespawnLocation);
 	lua_register(L, "ChatTargetSend", LuaChatTargetSend);
+	lua_register(L, "CommandCheckGameMasterLevel", LuaCommandCheckGameMasterLevel);
 	lua_register(L, "CommandGetArgNumber", LuaCommandGetArgNumber);
 	lua_register(L, "CommandGetArgString", LuaCommandGetArgString);
 	lua_register(L, "CommandSend", LuaCommandSend);
@@ -205,6 +205,7 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "SQLAsyncGetString", LuaSQLAsyncGetString);
 	lua_register(L, "GetGameServerProtocol", LuaGetGameServerProtocol);
 
+	lua_register(L, "MessageGetByPlayer", LuaMessageGetByPlayer);
 }
 
 int LuaRequire(lua_State* L)
@@ -277,17 +278,6 @@ int LuaGetMaxIndex(lua_State* L) // OK
 	}
 
 	lua_pushinteger(L, MAX_OBJECT);
-	return 1;
-}
-
-int LuaGetGameServerVersion(lua_State* L) // OK
-{
-	if (lua_gettop(L) != 0)
-	{
-		return luaL_error(L, LUA_SCRIPT_CODE_ERROR0);
-	}
-
-	lua_pushinteger(L, GAMESERVER_EXTRA);
 	return 1;
 }
 
@@ -365,6 +355,17 @@ int LuaGetGameServerMaxUser(lua_State* L) // OK
 	}
 
 	lua_pushinteger(L, gServerInfo.m_ServerMaxUserNumber);
+	return 1;
+}
+
+int LuaGetLicenseId(lua_State* L) // OK
+{
+	if (lua_gettop(L) != 0)
+	{
+		return luaL_error(L, LUA_SCRIPT_CODE_ERROR0);
+	}
+
+	lua_pushinteger(L, -1);
 	return 1;
 }
 
@@ -1048,6 +1049,30 @@ int LuaGetObjectDefaultEnergy(lua_State* L) // OK
 	}
 
 	lua_pushinteger(L, gDefaultClassInfo.GetCharacterDefaultStat(gObj[aIndex].Class, 3));
+	return 1;
+}
+
+int LuaGetObjectDefaultLeadership(lua_State* L) // OK
+{
+	if (lua_gettop(L) != 1)
+	{
+		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 1);
+	}
+
+
+	int aIndex = static_cast<int>(lua_tointeger(L, 1));
+
+	if (OBJECT_RANGE(aIndex) == 0)
+	{
+		return 0;
+	}
+
+	if (gObj[aIndex].Type != OBJECT_USER)
+	{
+		return 0;
+	}
+
+	lua_pushinteger(L, gDefaultClassInfo.GetCharacterDefaultStat(gObj[aIndex].Class, 4));
 	return 1;
 }
 
@@ -2161,7 +2186,39 @@ int LuaChatTargetSend(lua_State* L) // OK
 	return 1;
 }
 
+int LuaCommandCheckGameMasterLevel(lua_State* L) // OK
+{
+	if (lua_gettop(L) != 2)
+	{
+		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 2);
+	}
 
+
+	int aIndex = static_cast<int>(lua_tointeger(L, 1));
+	int aValue = static_cast<int>(lua_tointeger(L, 2));
+
+	if (OBJECT_RANGE(aIndex) == 0)
+	{
+		return 0;
+	}
+
+	if (gObj[aIndex].Type != OBJECT_USER)
+	{
+		return 0;
+	}
+
+	// Correção para ler a função CheckGameMasterLevel do Kayito
+	if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)
+	{
+		lua_pushinteger(L,0);
+	}
+	else
+	{
+		lua_pushinteger(L,1);
+	}
+	
+	return 1;
+}
 
 int LuaCommandGetArgNumber(lua_State* L) // OK
 {
@@ -2412,6 +2469,27 @@ int LuaGetMonsterName(lua_State* L) // OK
 	return 1;
 }
 
+int LuaFireworksSend(lua_State* L) // OK
+{
+	if (lua_gettop(L) != 3)
+	{
+		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 3);
+	}
+
+
+	int aIndex = static_cast<int>(lua_tointeger(L, 1));
+	int aValue = static_cast<int>(lua_tonumber(L, 2));
+	int bValue = static_cast<int>(lua_tonumber(L, 3));
+
+	if (OBJECT_RANGE(aIndex) == 0)
+	{
+		return 0;
+	}
+
+	GCServerCommandSend(aIndex, 0, (aValue == -1) ? gObj[aIndex].X : aValue, (bValue == -1) ? gObj[aIndex].Y : bValue);
+
+	return 1;
+}
 
 int LuaInventoryGetWearSize(lua_State* L) // OK
 {
@@ -2991,31 +3069,13 @@ int LuaMessageGet(lua_State* L) // OK
 		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 1);
 	}
 
-	int index = luaL_checkinteger(L, 1);
-	int aIndex = luaL_checkinteger(L, 2);
+	int aValue = static_cast<int>(lua_tointeger(L, 1));
 
-	if (aIndex < 0 || aIndex >= MAX_OBJECT)
-	{
-		lua_pushstring(L, "Invalid player index!");
-		return 1;
-	}
+	char value[256] = { 0 };
 
-	if (!gObjIsConnected(aIndex))
-	{
-		lua_pushstring(L, "Player not connected!");
-		return 1;
-	}
+	strcpy_s(value, gMessage.GetTextMessage(aValue, 0));
 
-	int lang = gObj[aIndex].Lang;
-
-
-	if (lang < LANGUAGE_ENGLISH || lang >= MAX_LANGUAGE)
-	{
-		lang = LANGUAGE_ENGLISH;
-	}
-
-
-	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
+	lua_pushstring(L, value);
 	return 1;
 }
 
@@ -4167,71 +4227,43 @@ int LuaSQLAsyncGetString(lua_State* L) // OK
 	return 1;
 }
 
+// Novas Funções By CMZone 
 
-// =============================================================================================================
-// Customs Modificadas
-// =============================================================================================================
-
-int LuaCommandCheckGameMasterLevel(lua_State* L) // OK
+int LuaMessageGetByPlayer(lua_State* L) // OK
 {
+	// Garante que temos os dois argumentos corretos
 	if (lua_gettop(L) != 2)
 	{
-		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 2);
+		lua_pushstring(L, "Invalid arguments! Expected (messageIndex, aIndex)");
+		return 1;
 	}
 
-
-	int aIndex = static_cast<int>(lua_tointeger(L, 1));
-	int aValue = static_cast<int>(lua_tointeger(L, 2));
-
-	if (OBJECT_RANGE(aIndex) == 0)
-	{
-		return 0;
-	}
-
-	if (gObj[aIndex].Type != OBJECT_USER)
-	{
-		return 0;
-	}
-
-	if (gGameMaster.CheckGameMasterLevel(&gObj[aIndex], aValue) == false)
-	{
-		lua_pushinteger(L, 0);
-	}
-	else
-	{
-		lua_pushinteger(L, 1);
-	}
-
-	return 1;
-}
-
-int LuaFireworksSend(lua_State* L) // OK
-{
-	// Verifica se o número de parâmetros passados para o Lua está correto (deve ser 3)
-	if (lua_gettop(L) != 3)
-	{
-		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 3);
-	}
-
-	// Obtém o índice do jogador, as coordenadas X e Y a partir dos parâmetros do Lua
-	int aIndex = static_cast<int>(lua_tointeger(L, 1));
-	int aValue = static_cast<int>(lua_tointeger(L, 2));
-	int bValue = static_cast<int>(lua_tointeger(L, 3));
+	int index = luaL_checkinteger(L, 1);  // Obtém o ID da mensagem
+	int aIndex = luaL_checkinteger(L, 2); // Obtém o ID do jogador
 
 	// Verifica se o índice do jogador é válido
-	if (!OBJECT_RANGE(aIndex))
+	if (aIndex < 0 || aIndex >= MAX_OBJECT)
 	{
-		return 0;  // Se o jogador não for válido, retorna 0
+		lua_pushstring(L, "Invalid player index!");
+		return 1;
 	}
 
-	// Se as coordenadas X ou Y forem -1, usa as coordenadas do jogador
-	int x = (aValue == -1) ? gObj[aIndex].X : aValue;
-	int y = (bValue == -1) ? gObj[aIndex].Y : bValue;
+	// Verifica se o jogador está online
+	if (!gObjIsConnected(aIndex))
+	{
+		lua_pushstring(L, "Player not connected!");
+		return 1;
+	}
 
-	// Chama a função do servidor para enviar os fogos de artifício
-	// GCFireworksSend agora deve ser chamada com o objeto do jogador e as coordenadas
-	LPOBJ lpObj = &gObj[aIndex];  // Obtém o objeto do jogador
-	GCFireworksSend(lpObj, x, y);  // Passa o objeto e as coordenadas para a função de fogos
+	int lang = gObj[aIndex].Lang; // Obtém o idioma do jogador
 
-	return 1; // Retorna 1, indicando que o comando foi executado com sucesso
+	// Verifica se o idioma é válido
+	if (lang < LANGUAGE_ENGLISH || lang >= MAX_LANGUAGE)
+	{
+		lang = LANGUAGE_ENGLISH; // Se for inválido, define como inglês
+	}
+
+	// Retorna a mensagem correta
+	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
+	return 1;
 }
