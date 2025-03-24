@@ -204,8 +204,6 @@ void InitLuaFunction(lua_State* L) // OK
 	lua_register(L, "SQLAsyncGetSingle", LuaSQLAsyncGetSingle);
 	lua_register(L, "SQLAsyncGetString", LuaSQLAsyncGetString);
 	lua_register(L, "GetGameServerProtocol", LuaGetGameServerProtocol);
-
-	lua_register(L, "MessageGetByPlayer", LuaMessageGetByPlayer);
 }
 
 int LuaRequire(lua_State* L)
@@ -3064,18 +3062,26 @@ int LuaMapGetItemTable(lua_State* L) // OK
 
 int LuaMessageGet(lua_State* L) // OK
 {
-	if (lua_gettop(L) != 1)
+	if (lua_gettop(L) != 2)
 	{
-		return luaL_error(L, LUA_SCRIPT_CODE_ERROR1, 1);
+		return luaL_error(L, "Invalid arguments! Expected (messageIndex, aIndex)");
 	}
 
-	int aValue = static_cast<int>(lua_tointeger(L, 1));
+	const int index = luaL_checkinteger(L, 1);
+	const int aIndex = luaL_checkinteger(L, 2);
 
-	char value[256] = { 0 };
 
-	strcpy_s(value, gMessage.GetTextMessage(aValue, 0));
+	if (!gObjIsConnectedGP(aIndex))
+	{
+		return luaL_error(L, "Player not connected or invalid index!");
+	}
 
-	lua_pushstring(L, value);
+	int lang = gObj[aIndex].Lang;
+
+	lang = (lang >= LANGUAGE_ENGLISH && lang < MAX_LANGUAGE) ? lang : LANGUAGE_ENGLISH;
+
+	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
+
 	return 1;
 }
 
@@ -4224,46 +4230,5 @@ int LuaSQLAsyncGetString(lua_State* L) // OK
 	gQueryManager.GetAsString((char*)aString, value, sizeof(value));
 
 	lua_pushstring(L, value);
-	return 1;
-}
-
-// Novas Funções By CMZone 
-
-int LuaMessageGetByPlayer(lua_State* L) // OK
-{
-	// Garante que temos os dois argumentos corretos
-	if (lua_gettop(L) != 2)
-	{
-		lua_pushstring(L, "Invalid arguments! Expected (messageIndex, aIndex)");
-		return 1;
-	}
-
-	int index = luaL_checkinteger(L, 1);  // Obtém o ID da mensagem
-	int aIndex = luaL_checkinteger(L, 2); // Obtém o ID do jogador
-
-	// Verifica se o índice do jogador é válido
-	if (aIndex < 0 || aIndex >= MAX_OBJECT)
-	{
-		lua_pushstring(L, "Invalid player index!");
-		return 1;
-	}
-
-	// Verifica se o jogador está online
-	if (!gObjIsConnected(aIndex))
-	{
-		lua_pushstring(L, "Player not connected!");
-		return 1;
-	}
-
-	int lang = gObj[aIndex].Lang; // Obtém o idioma do jogador
-
-	// Verifica se o idioma é válido
-	if (lang < LANGUAGE_ENGLISH || lang >= MAX_LANGUAGE)
-	{
-		lang = LANGUAGE_ENGLISH; // Se for inválido, define como inglês
-	}
-
-	// Retorna a mensagem correta
-	lua_pushstring(L, gMessage.GetTextMessage(index, lang));
 	return 1;
 }

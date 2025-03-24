@@ -181,4 +181,3 @@ int LuaSQLAsyncGetNumber(lua_State* L);
 int LuaSQLAsyncGetSingle(lua_State* L);
 int LuaSQLAsyncGetString(lua_State* L);
 int LuaGetGameServerProtocol(lua_State* L);
-int LuaMessageGetByPlayer(lua_State* L);
