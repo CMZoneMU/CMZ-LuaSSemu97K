@@ -1,0 +1,42 @@
+.cpp
+void UtilConsole(int color, char* text, ...) // OK
+{
+	char buff[1024];
+
+	va_list arg;
+
+	va_start(arg, text);
+
+	vsprintf_s(buff, text, arg);
+
+	va_end(arg);
+
+	wsprintf(buff, "%s\n", buff);
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	switch (color)
+	{
+	case 0:
+		SetConsoleTextAttribute(hConsole, 7);
+		break;
+	case 1:
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+		break;
+	case 2:
+		SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+		break;
+	case 3:
+		SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+		break;
+	}
+
+	WriteConsole(hConsole, buff, strlen(buff), 0, 0);
+
+	SetConsoleTextAttribute(hConsole, 7);
+
+
+}
+
+.h
+void UtilConsole(int color, char* text, ...);
