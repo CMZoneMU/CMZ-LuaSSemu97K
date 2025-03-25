@@ -19,7 +19,7 @@ Em: Type == OBJECT_USER)
 
 if (lpTarget->Type == OBJECT_USER)
 {
- gScriptLoader.OnMonsterDie(lpTarget->Index, SummonIndex); // 02
+  gScriptLoader.OnUserDie(lpTarget->Index, SummonIndex); // 02
 }
 
 //==============================================================================================================
@@ -46,7 +46,7 @@ if (gScriptLoader.OnNpcTalk(bIndex, aIndex) != 0)
 }
 
 //==============================================================================================================
-// 1 - Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemGetRecv
+// Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemGetRecv:
 //==============================================================================================================
 
 if (gScriptLoader.OnUserItemPick(aIndex, index) == 0)
@@ -57,7 +57,7 @@ if (gScriptLoader.OnUserItemPick(aIndex, index) == 0)
 
 
 //==============================================================================================================
-// 2 - Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemDropRecv
+// Adiconar na fonte ItemManager.cpp na função CItemManager::CGItemDropRecv
 //==============================================================================================================
 if (gScriptLoader.OnUserItemDrop(aIndex, lpMsg->slot, lpMsg->x, lpMsg->y) == 0)
 {
@@ -66,7 +66,7 @@ if (gScriptLoader.OnUserItemDrop(aIndex, lpMsg->slot, lpMsg->x, lpMsg->y) == 0)
 }
 
 //==============================================================================================================
-// 3 - Adiconar na fonte ItemManager na função CItemManager::CGItemMoveRecv
+// Adiconar na fonte ItemManager na função CItemManager::CGItemMoveRecv
 //==============================================================================================================
 if (gScriptLoader.OnUserItemMove(aIndex, lpMsg->SourceFlag, lpMsg->SourceSlot, lpMsg->TargetFlag, lpMsg->TargetSlot) == 0)
 {
