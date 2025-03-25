@@ -19,7 +19,7 @@ Em: Type == OBJECT_USER)
 
 if (lpTarget->Type == OBJECT_USER)
 {
-  gScriptLoader.OnUserDie(lpTarget->Index, SummonIndex); // 02
+  gScriptLoader.OnUserDie(lpTarget->Index, SummonIndex); // 02 - Alteração feita de  OnMonsterDie para o correto OnUserDie
 }
 
 //==============================================================================================================
