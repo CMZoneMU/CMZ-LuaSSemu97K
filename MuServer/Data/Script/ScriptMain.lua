@@ -28,7 +28,5 @@ require('System\\CMZ_ScriptCore')
 require('System\\CMZ_ScriptReader')
 require('Script\\CMZ_TemplateScript')
 require('Script\\CMZ_WelcomeMessage')
+require('Script\\CMZ_MonsterKill')
 
-
---require('Script\\chefao')
---require('Script\\sobrevivencia') 
