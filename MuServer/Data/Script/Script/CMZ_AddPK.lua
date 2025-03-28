@@ -1,3 +1,10 @@
+--[[ 
+    Eevento Sobrevivencia
+    Criado por: NiloMaster 25/03/2025
+	
+	Script Lua liberado para estudos..
+]]
+
 -- Registra a função CommandAddPK no gerenciador de comandos
 BridgeFunctionAttach("OnCommandManager", "CommandAddPK")  
 

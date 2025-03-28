@@ -1,3 +1,10 @@
+--[[ 
+    Base LuaScript SSeMU
+    Sistema Adaptado: NiloMaster 25/03/2025
+	
+	Sistema ScriptLua liberado para estudos..
+]]
+
 Reader = {}
 
 function Reader:Load(path)

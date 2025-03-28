@@ -1,12 +1,9 @@
---############################################################################
--- SSeMU MU Online Emulator
--- https://www.ssemu.com.ar
--- https://www.facebook.com/ssemuemulator
--- https://www.youtube.com/@ssemu
--- ---------------------------------------------------------------------------
--- © 2023 SetecSoft Development
--- This file is part of the SSeMU MuOnline Server files.
---############################################################################
+--[[ 
+    Base LuaScript SSeMU 
+    Sistema Adaptado: NiloMaster 25/03/2025
+	
+	Sistema ScriptLua liberado para estudos..
+]]
 
 -- ===========================================================================
 BridgeFunctionAttach('OnCharacterEntry','WelcomeMessage_OnCharacterEntry')

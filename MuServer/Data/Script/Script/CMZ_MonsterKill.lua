@@ -1,14 +1,11 @@
---############################################################################
--- SSeMU MU Online Emulator
--- https://www.ssemu.com.ar
--- https://www.facebook.com/ssemuemulator
--- https://www.youtube.com/@ssemu
--- ---------------------------------------------------------------------------
--- © 2024 SetecSoft Development
--- This file is part of the SSeMU MuOnline Server files.
---############################################################################
--- Creditos Script: Morado7773 Comunidade SSeMU
---############################################################################
+--[[ 
+    Eevento Sobrevivencia
+    Criado por: Morado7773 
+    Modificado por: CMZone 26/03/2025
+	
+    Script Lua liberado para estudos..
+]]
+
 
 -- ===========================================================================
 BridgeFunctionAttach('OnMonsterDie','MonsterMessage_OnMonsterDie')

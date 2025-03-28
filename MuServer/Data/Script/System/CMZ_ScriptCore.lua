@@ -1,20 +1,10 @@
--- ==============================================================================
--- # WZ MU Online Emulator
--- # https://www.wizardteam.com.br/
--- # https://chat.whatsapp.com/ILP49CmCU271Zrl04jHBBD
--- # https://www.youtube.com/@wizardteam9953
--- # ---------------------------------------------------------------------------
--- # ©  2008 - 2024 WizardTeam Development
--- # This file is part of the WZ Server files.
--- ==============================================================================
--- ===========================================================================
--- ADVERTENCIA: Modificar este archivo puede afectar la funcionalidad del juego. 
--- Cualquier modificación incorrecta puede resultar en errores, fallos o comportamientos inesperados en el juego.
-
--- WARNING: Modifying this file may affect the functionality of the game.
--- Any incorrect modification can result in errors, crashes, or unexpected behavior in the game.
--- ===========================================================================
-
+--[[ 
+    Base LuaScript SSeMU
+    Sistema Adaptado: NiloMaster 25/03/2025
+	
+	Sistema ScriptLua liberado para estudos..
+]]
+	
 BridgeFunctionTable = {}
 
 function BridgeFunctionAttach(BridgeName,FunctionName)
