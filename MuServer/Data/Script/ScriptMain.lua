@@ -32,4 +32,4 @@
 
 require('System\\CMZ_ScriptCore')
 require('System\\CMZ_ScriptReader') 
-require('Script\\CMZ_WelcomeMessage')
+require('Scripts\\CMZ_WelcomeMessage')
