@@ -1,32 +1,3 @@
--- ===========================================================================
--- Base Lua SSeMU - MuEmu 97k Kayito
--- Créditos Adaptação: NiloMaster | Gabriel GDA 
--- https://www.youtube.com/cmzonecriandomuonline
--- Sistema Livre para estudos © CMZone Team 2025
--- ===========================================================================
--- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
--- ===========================================================================
--- Reader System Information 
--- ===========================================================================
-
--- Atenção: Este arquivo deve ser usado apenas para requisitar outros arquivos.
--- O Reader é um sistema otimizado de leitura que:
--- Utiliza recursos apenas quando chamado
--- Não impacta o desempenho do servidor em idle
--- Gerencia memória de forma eficiente
--- Casos de uso do sistema:
--- Leitura de arquivos de configuração
--- Carregamento de dados de eventos
--- Processamento de informações de itens
--- Gerenciamento de dados de NPCs
--- Leitura de qualquer arquivo estruturado do servidor
--- Características:
--- Sistema leve e otimizado
--- Seguro para uso contínuo
--- Projetado para alta performance
--- Gerenciamento eficiente de recursos
--- ===========================================================================
-
 Reader = {}
 
 function Reader:Load(path)

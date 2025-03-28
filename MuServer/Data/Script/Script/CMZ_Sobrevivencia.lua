@@ -1,15 +1,10 @@
-
--- ===========================================================================
--- Base Lua SSeMU - MuEmu 97k Kayito
--- Créditos Adaptação: NiloMaster | Gabriel GDA 
--- https://www.youtube.com/cmzonecriandomuonline
--- ===========================================================================
--- Eevento Sobrevivencia
--- Criado por: Kellington Ricardo
--- Modificado por: CMZone 25/03/2025
--- Script Lua liberado para estudos..
--- ===========================================================================
-
+--[[ 
+    Eevento Sobrevivencia
+    Criado por: Kellington Ricardo
+    Modificado por: CMZone 25/03/2025
+	
+	Script Lua liberado para estudos..
+]]
 
 -- Anexar funções de evento
 BridgeFunctionAttach("OnReadScript", "Colosseum_ReadScript")
@@ -34,7 +29,7 @@ local nextID = 1
 
 function Colosseum_ReadScript()
     -- Configurations of the event
-    SYSTEM_CONFIG.Timer = { "13:46:00", "22:00:00" }
+    SYSTEM_CONFIG.Timer = { "15:05:00", "22:00:00" }
     SYSTEM_CONFIG.TimerAlert = 2 -- Tempo de alerta em minutos
     SYSTEM_CONFIG.MaxUsers = 20
     SYSTEM_CONFIG.MinUsers = 1
@@ -107,6 +102,62 @@ function gerenciarRegistro()
     end
 end
 
+-- Configuração dos monstros do evento
+local EVENT_MONSTERS = {
+    MonsterID = 2,  -- ID do monstro que será criado
+    Count = 20,     -- Quantidade de monstros
+    MoveRange = 15, -- Range de movimento dos monstros
+    Monsters = {}   -- Tabela para armazenar os monstros criados
+}
+
+function spawnEventMonsters()
+    EVENT_MONSTERS.Monsters = {} -- Limpa a lista de monstros existentes
+    
+    for i = 1, EVENT_MONSTERS.Count do
+        -- Calcula posição aleatória dentro de um range seguro
+        local x = SYSTEM_CONFIG.CordXY[1] + math.random(-8, 8)
+        local y = SYSTEM_CONFIG.CordXY[2] + math.random(-8, 8)
+        
+        -- Cria o monstro no mapa
+        local monsterIndex = AddMonster(SYSTEM_CONFIG.Map)
+        if monsterIndex >= 0 then
+            -- Configura o monstro
+            if SetMonsterID(monsterIndex, EVENT_MONSTERS.MonsterID) then
+                if SetMonsterPosition(monsterIndex, x, y) then
+                    SetMonsterAI(monsterIndex, 1) -- Ativa a IA do monstro
+                    SetMonsterMoveRange(monsterIndex, EVENT_MONSTERS.MoveRange)
+                    
+                    table.insert(EVENT_MONSTERS.Monsters, monsterIndex)
+                    LogColor(3, string.format("[Sobrevivência]: Monstro %d criado com sucesso na posição (%d, %d)", i, x, y))
+                else
+                    RemoveMonster(monsterIndex)
+                    LogColor(1, string.format("[Sobrevivência]: Falha ao posicionar monstro %d", i))
+                end
+            else
+                RemoveMonster(monsterIndex)
+                LogColor(1, string.format("[Sobrevivência]: Falha ao definir ID do monstro %d", i))
+            end
+        else
+            LogColor(1, string.format("[Sobrevivência]: Falha ao criar monstro %d", i))
+        end
+    end
+    
+    -- Verifica se algum monstro foi criado
+    if #EVENT_MONSTERS.Monsters > 0 then
+        LogColor(3, string.format("[Sobrevivência]: Total de %d monstros criados com sucesso", #EVENT_MONSTERS.Monsters))
+    else
+        LogColor(1, "[Sobrevivência]: Falha ao criar monstros para o evento")
+    end
+end
+
+function removeEventMonsters()
+    for _, monsterIndex in ipairs(EVENT_MONSTERS.Monsters) do
+        RemoveMonster(monsterIndex)
+    end
+    EVENT_MONSTERS.Monsters = {}
+    LogColor(3, "[Sobrevivência]: Todos os monstros do evento foram removidos.")
+end
+
 function iniciarEvento()
     SYSTEM_MAIN.Stage = 2
     SYSTEM_MAIN.Count = 0
@@ -119,6 +170,9 @@ function iniciarEvento()
     for _, user in ipairs(SYSTEM_MAIN.Users) do
         teleportUserToArena(user.Index)
     end
+
+    -- Cria os monstros do evento
+    spawnEventMonsters()
 end
 
 function cancelarEvento()
@@ -274,6 +328,9 @@ function resetEventVariables()
     SYSTEM_MAIN.Count = 0
     SYSTEM_MAIN.EventEndTime = nil
     SYSTEM_MAIN.EventFinalized = false
+    
+    -- Remove os monstros do evento
+    removeEventMonsters()
 end
 
 function teleportUserToArena(userIndex)

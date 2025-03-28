@@ -1,18 +1,23 @@
+--############################################################################
+-- SSeMU MU Online Emulator
+-- https://www.ssemu.com.ar
+-- https://www.facebook.com/ssemuemulator
+-- https://www.youtube.com/@ssemu
+-- ---------------------------------------------------------------------------
+-- © 2024 SetecSoft Development
+-- This file is part of the SSeMU MuOnline Server files.
+--############################################################################
+
 -- ===========================================================================
--- Base Lua SSeMU - MuEmu 97k Kayito
--- Créditos Adaptação: NiloMaster | Gabriel GDA 
--- https://www.youtube.com/cmzonecriandomuonline
--- Sistema Livre para estudos © CMZone Team 2025
--- ===========================================================================
--- Este arquivo faz parte dos arquivos do Mu Server MuEmu 97k.
--- ===========================================================================
--- TemplateScript System Information
--- ===========================================================================
--- Atenção: Este arquivo deve ser usado apenas para requisitar outros arquivos.
--- Você não deve adicionar código neste arquivo. Se você deseja adicionar scripts personalizados,
--- crie um novo arquivo baseado no exemplo 'TemplateScript.lua'.
--- Certifique-se de não remover a linha require('System\ScriptCore'), pois sem ela, nenhum script funcionará.
--- Para adicionar novos scripts, você deve usar a sintaxe require('Nome do arquivo').
+-- Este es un script de ejemplo que no cumple ninguna función específica. 
+-- Su único propósito es servir para ilustrar el uso de las funciones. 
+-- Aquí se muestran todos los puentes que están disponibles.
+-- Siguiendo el formato: BridgeFunctionAttach('NombrePuente','NombreFuncion').
+
+-- This is a sample script that does not serve any specific function.
+-- Its sole purpose is to serve as an illustration of the use of functions.
+-- Here, all available bridges are shown.
+-- The format is as follows: BridgeFunctionAttach('BridgeName','FunctionName').
 -- ===========================================================================
 
 BridgeFunctionAttach('OnReadScript','TemplateScript_OnReadScript')
@@ -34,18 +39,10 @@ BridgeFunctionAttach('OnUserItemMove','TemplateScript_OnUserItemMove')
 BridgeFunctionAttach('OnSQLAsyncResult','TemplateScript_OnSQLAsyncResult')
 
 -- ===========================================================================
-
-
--- [Por]
--- Aqui estão todas as funções que estão disponíveis e como devem ser usadas.
--- O formato é o seguinte: function NomeFuncao_NomePonte(argumentos)
-
--- [Spn]
 -- Aquí se muestran todas las funciones que están disponibles y como deben usarse.
 -- El formato es el siguiente: function NombreFuncion_NombrePuente(argumentos)
 
--- [Eng]
--- Here are all the available functions and how they should be used.
+-- Here, all available functions are shown along with their usage guidelines.
 -- The format is as follows: function FunctionName_BridgeName(arguments)
 -- ===========================================================================
 
@@ -211,5 +208,3 @@ function TemplateScript_OnSQLAsyncResult(label,param,result)
 	-- ### Bridge information: ###
 	-- Called after async query execution.
 end
-
-LogColor(2, "[TemplateScript] Carregado Com Sucesso!")
